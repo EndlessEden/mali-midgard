@@ -45,6 +45,7 @@
 #endif				/* defined(CONFIG_DMA_SHARED_BUFFER) */
 #include <linux/shrinker.h>
 #include <linux/cache.h>
+#include <trace/events/kmem.h>
 
 #include <mali_kbase.h>
 #include <mali_kbase_mem_linux.h>
