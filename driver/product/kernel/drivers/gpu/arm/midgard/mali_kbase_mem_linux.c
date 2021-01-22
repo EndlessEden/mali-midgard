@@ -1116,7 +1116,7 @@ static struct kbase_va_region *kbase_mem_from_user_buffer(
 			pages, NULL);
 #endif
 
-	mmap_read_unlock(&current->mm->mmap_sem);
+	mmap_read_unlock(current->mm);
 
 	if (faulted_pages != *va_pages)
 		goto fault_mismatch;
@@ -1617,7 +1617,7 @@ int kbase_mem_commit(struct kbase_context *kctx, u64 gpu_addr, u64 new_pages)
 		 * No update to the mm so downgrade the writer lock to a read
 		 * lock so other readers aren't blocked after this point.
 		 */
-		downgrade_write(&current->mm->mmap_sem);
+		mmap_downgrade_write_lock(current->mm);
 		read_locked = true;
 
 		/* Allocate some more pages */
