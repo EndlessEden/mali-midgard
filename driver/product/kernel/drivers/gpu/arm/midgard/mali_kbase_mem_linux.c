@@ -51,6 +51,11 @@
 #include <mali_kbase_tlstream.h>
 #include <mali_kbase_ioctl.h>
 
+void mm_trace_rss_stat(struct mm_struct *mm, int member, long count)
+{
+	trace_rss_stat(mm, member, count);
+}
+
 
 static int kbase_vmap_phy_pages(struct kbase_context *kctx,
 		struct kbase_va_region *reg, u64 offset_bytes, size_t size,
